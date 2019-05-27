@@ -2,6 +2,7 @@
 
 import os
 from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
@@ -16,8 +17,14 @@ def card():
     if request.method == "GET":
         return"GET"
     else:
-        print(request.json)
-        return request.json
+        print(request.data)
+
+        data = request.data
+        data = json.loads(data)
+
+        print(data['zen'])
+
+        return app.jsonify(res='ok')
 
 
 if __name__ == "__main__":
