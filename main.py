@@ -16,8 +16,8 @@ def index():
     if request.method == "GET":
         return"GET"
     else:
-        print(request)
-        return request
+        print(request.data)
+        return request.data
 
 
 if __name__ == "__main__":
