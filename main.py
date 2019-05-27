@@ -3,7 +3,9 @@
 import os
 from flask import Flask, request, jsonify
 from slacker import Slacker
-import json
+import hashlib
+import hmac
+
 
 app = Flask(__name__)
 slack = Slacker(os.environ["API_TOKEN"])
@@ -16,15 +18,26 @@ def index():
 
 @app.route('/project_card', methods=["GET", "POST"])
 def card():
+    #get
     if request.method == 'GET':
         return"GET"
+
+     #post
     if request.method == 'POST':
+        print(request.get_data())
+        if not is_valid_key(request.headers.get('X-Hub-Signature'), request.get_json()):
+            return
         data = request.get_json()
         print(data)
         if data['action'] == "created":
-            slack.chat.post_message('#regional_industry', create_card(data))
+            slack.chat.post_message('#test1', create_card(data))
         return jsonify(res='ok')
     return jsonify(res='505')
+
+def is_valid_key(key, payload):
+    if key:
+        hasher = hmac.new(os.environ['secret'], payload, hashlib.sha1)
+        signature = 'sha1=' + hasher
 
 
 def create_card(json):
