@@ -18,6 +18,7 @@ def card():
         return"GET"
     if request.method == 'POST':
         data = request.data.decode('utf-8')
+        print(data)
         data = json.loads(data)
         print(data)
         return jsonify(res='ok')
