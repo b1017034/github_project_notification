@@ -24,10 +24,10 @@ def card():
 
      #post
     if request.method == 'POST':
-        print(request.get_data())
-        #if not is_valid_key(request.headers.get('X-Hub-Signature'), request.get_json()):
+        if not is_valid_key(request.headers.get('X-Hub-Signature'), request.get_data()):
+            return jsonify(res='not key')
         data = request.get_json()
-        print(data)
+
         if data['action'] == "created":
             slack.chat.post_message('#test1', create_card(data))
         return jsonify(res='ok')
@@ -35,9 +35,9 @@ def card():
 
 def is_valid_key(key, payload):
     if key:
-        hasher = hmac.new(os.environ['secret'], payload, hashlib.sha1)
-        signature = 'sha1=' + hasher
-        return signature == key
+        hasher = hmac.new(os.environ['secret'].encode(), payload, hashlib.sha1)
+        signature = 'sha1=' + hasher.hexdigest()
+        return hmac.compare_digest(signature, key)
 
 
 def create_card(json):
