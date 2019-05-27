@@ -21,8 +21,8 @@ def card():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
-        if data['action']:
-            slack.chat.post_message('#test1', create_card(data))
+        if data['action'] == "created":
+            slack.chat.post_message('#regional_industry', create_card(data))
         return jsonify(res='ok')
     return jsonify(res='505')
 
