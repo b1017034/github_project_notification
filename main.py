@@ -20,9 +20,8 @@ def card():
         print(request.data)
 
         data = request.data
-        print(data['zen'])
+        print(data)
 
-        print(data['zen'])
 
         return app.jsonify(res='ok')
 
