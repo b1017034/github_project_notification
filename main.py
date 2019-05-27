@@ -12,7 +12,7 @@ def index():
     return html
 
 @app.route('/project_card', methods=["GET", "POST"])
-def index():
+def card():
     if request.method == "GET":
         return"GET"
     else:
