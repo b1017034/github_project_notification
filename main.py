@@ -16,8 +16,8 @@ def card():
     if request.method == "GET":
         return"GET"
     else:
-        print(request.data)
-        return request.data
+        print(request.json)
+        return request.json
 
 
 if __name__ == "__main__":
