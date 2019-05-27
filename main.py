@@ -18,8 +18,7 @@ def card():
         return"GET"
     else:
         print(request.data)
-
-        data = request.data
+        data = json.loads(request.data)
         print(data)
 
         return jsonify(res='ok')
