@@ -19,8 +19,8 @@ def card():
     else:
         print(request.data)
 
-        data = request.data.decode('utf-8')
-        data = json.loads(data)
+        data = request.data
+        print(data['zen'])
 
         print(data['zen'])
 
