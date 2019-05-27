@@ -14,15 +14,14 @@ def index():
 
 @app.route('/project_card', methods=["GET", "POST"])
 def card():
-    if request.method == "GET":
+    if request.method == 'GET':
         return"GET"
-    else:
-        print(request.data)
-        data = json.loads(request.data)
+    if request.method == 'POST':
+        data = request.data.decode('utf-8')
+        data = json.loads(data)
         print(data)
-
         return jsonify(res='ok')
-
+    return jsonify(res='505')
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
