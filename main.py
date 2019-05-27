@@ -22,8 +22,7 @@ def card():
         data = request.data
         print(data)
 
-
-        return app.jsonify(res='ok')
+        return jsonify(res='ok')
 
 
 if __name__ == "__main__":
