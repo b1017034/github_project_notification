@@ -25,8 +25,7 @@ def card():
      #post
     if request.method == 'POST':
         print(request.get_data())
-        if not is_valid_key(request.headers.get('X-Hub-Signature'), request.get_json()):
-            return
+        #if not is_valid_key(request.headers.get('X-Hub-Signature'), request.get_json()):
         data = request.get_json()
         print(data)
         if data['action'] == "created":
@@ -38,6 +37,7 @@ def is_valid_key(key, payload):
     if key:
         hasher = hmac.new(os.environ['secret'], payload, hashlib.sha1)
         signature = 'sha1=' + hasher
+        return signature == key
 
 
 def create_card(json):
