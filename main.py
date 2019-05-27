@@ -17,10 +17,9 @@ def card():
     if request.method == 'GET':
         return"GET"
     if request.method == 'POST':
-        data = request.data.decode('utf-8')
+        data = request.get_json()
         print(data)
-        data = json.loads(data)
-        print(data)
+        print(data['zen'])
         return jsonify(res='ok')
     return jsonify(res='505')
 
