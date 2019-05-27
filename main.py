@@ -19,7 +19,7 @@ def card():
     else:
         print(request.data)
 
-        data = request.data
+        data = request.data.decode('utf-8')
         data = json.loads(data)
 
         print(data['zen'])
