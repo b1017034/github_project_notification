@@ -35,7 +35,7 @@ def card_edited(json):
 
     return "edited: " + card_name + "\n" + "from: " + card_changed + "\n" + "by: " + name + "note: " + note
 def get_column(project_id, column_id):
-    columns = g.get_project(project_id).get_columns()
+    columns = g.get_project(int(project_id)).get_columns()
     for i in columns:
         if i == column_id:
             return i.name
