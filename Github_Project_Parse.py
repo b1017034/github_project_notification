@@ -8,7 +8,7 @@ def slack_text(json):
     if json['action'] == "created":
         return card_created(json)
     elif json['action'] == "edited":
-        return card_created(json)
+        return card_edited(json)
     elif json['action'] == "moved":
         return card_moved(json)
     else:
