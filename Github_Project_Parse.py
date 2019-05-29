@@ -23,7 +23,7 @@ def card_moved(json):
     name = json['sender']['login']
     note_changed = get_column(get_project_id(json), json['changes']['column_id']['from'])
     card_name = json['project_card']['note']
-    note = get_column(get_project_id(json), json['project_id']['column_id'])
+    note = get_column(get_project_id(json), json['project_card']['column_id'])
 
     return "moved: " + card_name + "\n" + "from: " + note_changed + "\n" + "by: " + name + "note: " + note
 
@@ -31,7 +31,7 @@ def card_edited(json):
     name = json['sender']['login']
     card_changed = json['changes']['note']['from']
     card_name = json['project_card']['note']
-    note = get_column(get_project_id(json), json['project_id']['column_id'])
+    note = get_column(get_project_id(json), json['project_card']['column_id'])
 
     return "edited: " + card_name + "\n" + "from: " + card_changed + "\n" + "by: " + name + "note: " + note
 def get_column(project_id, column_id):
