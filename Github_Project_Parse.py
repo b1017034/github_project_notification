@@ -44,4 +44,4 @@ def get_column(project_id, column_id):
 def get_project_id(json):
     split_str = "https://api.github.com/projects/"
 
-    return json['project_card']['project_id'].split(split_str)[1]
+    return json['project_card']['project_url'].split(split_str)[1]
